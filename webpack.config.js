@@ -3,14 +3,14 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    entry: './src/index.js',
+    entry: './src/client/index.js',
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js'
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './src/index.html'
+            template: './src/client/index.html'
         })
     ],
     devServer: {
@@ -19,7 +19,7 @@ module.exports = {
             directory: path.resolve(__dirname, 'dist')
         },
         proxy: {
-            '/api': 'http://localhost:3000',
+            '/': 'http://localhost:3000',
         }
     },
     module: {
@@ -37,10 +37,15 @@ module.exports = {
             {
               test: /\.css$/,
               use: ['style-loader', 'css-loader']
-            }
+            },
+            {
+                test: /\.(ts|tsx)$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+              }
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     }
 }
