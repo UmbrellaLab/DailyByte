@@ -26,19 +26,19 @@ const Home = () => {
   return (
     <div className='home-page'>
       <div id='algo-content'>
-        <div id='algo-prompt'>
-          <Prompt promptData={promptData} />
-        </div>
+        <Prompt promptData={promptData} />
         <div id='algo-solutions'>{/* Render the solutions */}</div>
-        <div id='code-editor'>
-          <CodeMirror
-            value='//Hello World!'
-            height='100px'
-            extensions={[javascript({ jsx: true }), EditorView.lineWrapping]}
-          />
-        </div>
+        <CodeMirror
+          id='code-mirror'
+          value='//Hello World!'
+          theme='dark'
+          extensions={[javascript({ jsx: true }), EditorView.lineWrapping]}
+        />
         <button id='submit-code' name='submit-code' type='button'>
           Submit
+        </button>
+        <button id='clr-editor' name='clr-editor' type='button'>
+          Clear
         </button>
       </div>
     </div>
