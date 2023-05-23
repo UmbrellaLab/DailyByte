@@ -1,9 +1,9 @@
 const db = require("../model.ts");
 import express, {
-  Request,
-  Response,
-  NextFunction,
-  RequestHandler,
+    Request,
+    Response,
+    NextFunction,
+    RequestHandler,
 } from "express";
 import cookieParser from "cookie-parser";
 import bcrypt from 'bcryptjs';
@@ -18,27 +18,38 @@ export const signInController = {
     verifyUser: async (req: Request, res: Response, next: NextFunction) => {
         // find user in database
         // get username/pw from req.body
-        const {username, password} = req.body;
-        const values = [username, password]
-        const userQuery = 
+        const { username, password } = req.body;
+        const values = [username]
+        const userQuery =
             `SELECT *
             FROM users
             WHERE username=$1`
         try {
-            const result = await db.query(userQuery, values);
-            if (result.rows.length === 1){
+            const dataResult = await db.query(userQuery, values);
+
+            // if there is a result, return that the user is verified
+            if (dataResult.rows.length === 1){
                 // compare password with bcrypt password
-                const databasePassword = result.rows[0].password;
-                console.log(databasePassword);
-                // set cookie with user ID
-                res.cookie('user_id', result.rows[0].user_id);
-                res.cookie('username', username);
-                return next();
+                const databasePassword = dataResult.rows[0].password;
+                bcrypt.compare(password, databasePassword, function (err, result){
+                    // if password matches, set verified to true
+                    if (result === true){
+                        res.locals.verified = "true";
+                        res.cookie('user_id', dataResult.rows[0].user_id);
+                        res.cookie('username', username);
+                        return next();
+                    } else {
+                        res.locals.verified = "false";
+                        return next();
+                    }
+                })
+            // if user is not in database, verified is false
             } else {
-                res.locals.verified = 'false';
+                res.locals.verified = "false";
+                console.log(res.locals.verified)
                 return next();
             }
-        } catch (err){
+        } catch (err) {
             baseError.log = `Error caught in signInController: ${err}`;
             baseError.message.err = `Could not sign in user`;
             return next(baseError);
@@ -73,6 +84,7 @@ export const signInController = {
                 const user_id = user.rows[0].user_id;
                 res.cookie('user_id', user_id);
                 res.cookie('username', username);
+                res.locals.verified = "true"
                 return next();
             } catch (err){
                 baseError.log = `Error caught in signInController: ${err}`;
