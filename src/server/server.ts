@@ -22,6 +22,10 @@ app.get('/', (req: Request, res: Response) => {
 // send requests to algos to algo router
 app.use('/algo', algoRouter);
 
+app.post('/signin', (req: Request, res: Response) => {
+    res.status(200).send("true");
+})
+
 app.listen(port, () => {
     console.log(`Beep boop, listening on port ${port}`)
 });

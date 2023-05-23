@@ -1,3 +1,115 @@
 * {
-    background-color: aqua;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(185, 185, 185);
+}
+
+h1 {
+    background-color: rgb(68, 68, 142);
+    text-align: center;
+    padding: 0.5em;
+}
+
+.auth-content {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    width: 300px;
+    height: 200px;
+    border: 1px solid rgb(68, 68, 142);
+    border-radius: 1.5em;
+    background-color: rgb(68, 68, 142);
+    padding: 1.5em;
+    margin: 1em;
+}
+
+.auth-form input {
+    margin-bottom: 0.4em;
+    padding: 7px;
+    width: 70%;
+    text-align: center;
+    border-radius: 1.5em;
+}
+
+.auth-form button {
+    margin-bottom: 0.4em;
+    padding: 7px;
+    border-radius: 1.5em;
+}
+
+.auth-form p {
+    color: rgb(159, 0, 0);
+}
+
+.auth-form a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin-top: 30px;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+.home-page {
+    height: 100%;
+    padding: 20px;
+}
+
+#algo-content {
+    height: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+#algo-prompt {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background-color: rgb(68, 68, 142);
+}
+
+#algo-solutions {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 7;
+    background-color: rgb(68, 68, 142);
+}
+
+#code-editor {
+    grid-column-start: 5;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    background-color: rgb(68, 68, 142);
+}
+
+#submit-code {
+    grid-column-start: 5;
+    grid-column-end: 11;
+    grid-row-start: 6;
+    grid-row-end: 7;
 }
