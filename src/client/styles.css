@@ -17,6 +17,11 @@ h1 {
     padding: 0.5em;
 }
 
+h2 {
+    text-align: center;
+    padding: 0.5em;
+}
+
 .auth-content {
     display: flex;
     flex: 1;
@@ -99,16 +104,38 @@ h1 {
     background-color: rgb(68, 68, 142);
 }
 
-#code-editor {
+#code-mirror {
     grid-column-start: 5;
     grid-column-end: 11;
     grid-row-start: 1;
     grid-row-end: 6;
-    background-color: rgb(68, 68, 142);
+    background-color: rgb(255, 255, 255);
+}
+
+.cm-editor {
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+
+.cm-scroller {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
 }
 
 #submit-code {
     grid-column-start: 5;
+    grid-column-end: 8;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+#clr-editor {
+    grid-column-start: 8;
     grid-column-end: 11;
     grid-row-start: 6;
     grid-row-end: 7;

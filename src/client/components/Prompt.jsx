@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 const Prompt = ({promptData}) => {
   return (
-    <div>
-      <h1>Challenge of the day</h1>
+    <div id='algo-prompt'>
+      <h2>Challenge of the day</h2>
       <p>{promptData}</p>
     </div>
   )
