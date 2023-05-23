@@ -32,7 +32,7 @@ h1 {
     text-align: center;
     width: 300px;
     height: 200px;
-    border: 1px solid rgba(68, 68, 142);
+    border: 1px solid rgb(68, 68, 142);
     border-radius: 1.5em;
     background-color: rgb(68, 68, 142);
     padding: 1.5em;
@@ -88,7 +88,7 @@ h1 {
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 4;
-    background-color: red;
+    background-color: rgb(68, 68, 142);
 }
 
 #algo-solutions {
@@ -96,7 +96,7 @@ h1 {
     grid-column-end: 5;
     grid-row-start: 4;
     grid-row-end: 7;
-    background-color: red;
+    background-color: rgb(68, 68, 142);
 }
 
 #code-editor {
@@ -104,5 +104,12 @@ h1 {
     grid-column-end: 11;
     grid-row-start: 1;
     grid-row-end: 6;
-    background-color: red;
+    background-color: rgb(68, 68, 142);
+}
+
+#submit-code {
+    grid-column-start: 5;
+    grid-column-end: 11;
+    grid-row-start: 6;
+    grid-row-end: 7;
 }
