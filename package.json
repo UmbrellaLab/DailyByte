@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/annelise08/boilerplate#readme",
   "dependencies": {
+    "@carbon/react": "^1.29.1",
     "@codemirror/lang-javascript": "^6.1.8",
     "@codemirror/view": "^6.12.0",
+    "@mantine/core": "^6.0.11",
+    "@mantine/hooks": "^6.0.11",
+    "@mantine/prism": "^6.0.11",
     "@uiw/react-codemirror": "^4.20.2",
     "bundler": "^0.8.0",
     "codemirror": "^6.0.1",
