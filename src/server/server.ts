@@ -5,6 +5,7 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const algoRouter = require('./routes/algo');
 
 // parse any incoming requests & cookies
 app.use(express.json());
