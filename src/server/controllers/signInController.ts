@@ -20,12 +20,21 @@ export const signInController = {
         const {username, password} = req.body;
         const values = [username, password]
         const userQuery = 
-            `SELECT username, password
+            `SELECT *
             FROM users
             WHERE username=$1 AND password=$2`
         try {
-            const result = db.query(userQuery, values);
-            
+            const result = await db.query(userQuery, values);
+            if (result.rows.length === 1){
+                res.locals.verified = "true";
+                // set cookie with user ID
+                res.cookie('user_id', result.rows._id);
+                res.cookie('username', username);
+                return next();
+            } else {
+                res.locals.verified = 'false';
+                return next();
+            }
         } catch (err){
             baseError.log = `Error caught in signInController: ${err}`;
             baseError.message.err = `Could not sign in user`;
