@@ -42,16 +42,33 @@ export const solutionsController = {
     const dateArr = [date]
     const getSolutionsQuery = `SELECT solution_id, username, solution, star_count
     FROM solutions WHERE algo_id=($1)
-    ORDER BY star_count ASC`
+    ORDER BY star_count DESC`
     try {
       const result = await db.query(getSolutionsQuery, dateArr);
-      console.log('result from getSolutions', result);
+      console.log('retrieved solutions!')
       res.locals.solutions = result.rows;
       return next();
     }
     catch(err) {
       baseError.log = `Error caught in getSolutions: ${err}`;
       baseError.message.err = `Could not retrieve solutions`;
+      return next(baseError);
+    }
+  },
+  updateStars: async (req: Request, res: Response, next: NextFunction) => {
+    const { solution_id } = req.body;
+    const solutionArr = [solution_id]
+    const updateStarsQuery = `UPDATE solutions
+    SET star_count = star_count + 1
+    WHERE solution_id=($1)`
+    try {
+      await db.query(updateStarsQuery, solutionArr);
+      console.log('updated star count!');
+      return next();
+    }
+    catch(err) {
+      baseError.log = `Error caught in updateStars: ${err}`;
+      baseError.message.err = `Could not update star count`;
       return next(baseError);
     }
   }
