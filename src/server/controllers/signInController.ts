@@ -62,6 +62,7 @@ export const signInController = {
             const user_id = user.rows[0].user_id;
             res.cookie('user_id', user_id);
             res.cookie('username', username);
+            res.locals.verified = "true";
             return next();
         } catch (err) {
             baseError.log = `Error caught in signInController: ${err}`;
