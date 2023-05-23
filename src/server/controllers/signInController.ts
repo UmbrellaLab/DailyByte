@@ -23,11 +23,13 @@ export const signInController = {
         const userQuery = 
             `SELECT *
             FROM users
-            WHERE username=$1 AND password=$2`
+            WHERE username=$1`
         try {
             const result = await db.query(userQuery, values);
             if (result.rows.length === 1){
-                res.locals.verified = "true";
+                // compare password with bcrypt password
+                const databasePassword = result.rows[0].password;
+                console.log(databasePassword);
                 // set cookie with user ID
                 res.cookie('user_id', result.rows[0].user_id);
                 res.cookie('username', username);
