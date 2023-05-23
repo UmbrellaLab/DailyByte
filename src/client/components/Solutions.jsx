@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Solutions = ({solutionsData}) => {
+const Solutions = ({solutions}) => {
   console.log(solutionsData)
   let solutions = []
   for (let key of solutionsData) {

@@ -6,12 +6,9 @@ import Prompt from './Prompt';
 import Solutions from './Solutions';
 
 const Home = () => {
-  const [code, setCode] = useState();
-  const [promptData, setPromptData] = useState();
-  const [solutionsData, setSolutionsData] = useState([{
-    user_id: "gary",
-    solution: "rubber duck"
-  }]);
+  const [codeEditorValue, setCodeEditorValue] = useState('');
+  const [promptData, setPromptData] = useState('');
+  const [solutions, setSolutions] = useState();
 
   useEffect(() => {
     // Function to make a request for the latest algorithm and pass it down to the Prompt component
@@ -28,35 +25,45 @@ const Home = () => {
     fetchLatestAlgorithm();
   }, []);
 
-  // Function to make a request for the latest algorithm and pass it down to the Prompt component
-  // const fetchLatestSolutions = async () => {
-  //   try {
-  //     const response = await fetch('/solutions');
-  //     const data = await response.json();
-  //     setSolutions(data);
-  //   } catch (error) {
-  //     console.log('Error retrieving the latest algorithm:', error);
-  //   }
-  // };
+  const handleSubmit = () => {
+    fetch('/solutions', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        codeEditorValue: codeEditorValue
+      })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      setSolutions(data);
+    })
+    .catch(err => {
+      console.log('Error connecting to server using path \'/solutions\'');
+    })
+  };
 
-  // fetchLatestSolutions();
-
+  const handleClear = () => {
+    setCodeEditorValue('');
+  };
 
   return (
     <div className='home-page'>
       <div id='algo-content'>
         <Prompt promptData={promptData} />
-        <Solutions solutionsData={solutionsData} />
+        <Solutions solutions={solutions} />
         <CodeMirror
           id='code-mirror'
           value='//Hello World!'
           theme='dark'
+          onChange={(newCode) => setCode(newCode)}
           extensions={[javascript({ jsx: true }), EditorView.lineWrapping]}
         />
-        <button id='submit-code' name='submit-code' type='button'>
+        <button id='submit-code' name='submit-code' type='button' onClick={handleSubmit}>
           Submit
         </button>
-        <button id='clr-editor' name='clr-editor' type='button'>
+        <button id='clr-editor' name='clr-editor' type='button' onClick={handleClear}>
           Clear
         </button>
       </div>

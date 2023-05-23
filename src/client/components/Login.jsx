@@ -29,7 +29,7 @@ const Login= () => {
         }
       })
       .catch(err => {
-        console.log('There was an error connecting to server using path \'/signin\'');
+        console.log('Error connecting to server using path \'/signin\'');
       });
   };
 
