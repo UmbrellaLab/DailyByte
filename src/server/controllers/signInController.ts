@@ -28,7 +28,7 @@ export const signInController = {
             if (result.rows.length === 1){
                 res.locals.verified = "true";
                 // set cookie with user ID
-                res.cookie('user_id', result.rows._id);
+                res.cookie('user_id', result.rows[0].user_id);
                 res.cookie('username', username);
                 return next();
             } else {
@@ -57,7 +57,7 @@ export const signInController = {
             // set cookies with user_id and username here
             // find user
             const user = await db.query(userQuery, values);
-            const user_id = user.rows.user_id;
+            const user_id = user.rows[0].user_id;
             res.cookie('user_id', user_id);
             res.cookie('username', username);
             return next();
