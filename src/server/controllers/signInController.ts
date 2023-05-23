@@ -6,6 +6,7 @@ import express, {
     RequestHandler,
 } from "express";
 import cookieParser from "cookie-parser";
+import bcrypt from 'bcryptjs';
 
 const baseError = {
     status: 400,
@@ -18,23 +19,34 @@ export const signInController = {
         // find user in database
         // get username/pw from req.body
         const { username, password } = req.body;
-        const values = [username, password]
+        const values = [username]
         const userQuery =
             `SELECT *
             FROM users
-            WHERE username=$1 AND password=$2`
+            WHERE username=$1`
         try {
-            const result = await db.query(userQuery, values);
-            if (result.rows.length === 1) {
-                res.locals.verified = "true";
-                // set cookie with user ID
-                console.log('inside signin cookie')
-                console.log(result.rows)
-                res.cookie('user_id', result.rows[0].user_id);
-                res.cookie('username', username);
-                return next();
+            const dataResult = await db.query(userQuery, values);
+
+            // if there is a result, return that the user is verified
+            if (dataResult.rows.length === 1){
+                // compare password with bcrypt password
+                const databasePassword = dataResult.rows[0].password;
+                bcrypt.compare(password, databasePassword, function (err, result){
+                    // if password matches, set verified to true
+                    if (result === true){
+                        res.locals.verified = "true";
+                        res.cookie('user_id', dataResult.rows[0].user_id);
+                        res.cookie('username', username);
+                        return next();
+                    } else {
+                        res.locals.verified = "false";
+                        return next();
+                    }
+                })
+            // if user is not in database, verified is false
             } else {
-                res.locals.verified = 'false';
+                res.locals.verified = "false";
+                console.log(res.locals.verified)
                 return next();
             }
         } catch (err) {
@@ -45,29 +57,40 @@ export const signInController = {
     },
     signUpUser: async (req: Request, res: Response, next: NextFunction) => {
         // get username and password from request body
-        const { username, password } = req.body;
-        const values = [username, password]
+        let {username, password} = req.body;
         // need to make sure user with same username does not exist (?)
-        const userInsert = `INSERT INTO users (username, password)
-        VALUES ($1, $2)`
-        const userQuery =
-            `SELECT *
-            FROM users
-            WHERE username=$1 AND password=$2`
-        try {
-            const result = await db.query(userInsert, values);
-            // set cookies with user_id and username here
-            // find user
-            const user = await db.query(userQuery, values);
-            const user_id = user.rows[0].user_id;
-            res.cookie('user_id', user_id);
-            res.cookie('username', username);
-            res.locals.verified = "true";
-            return next();
-        } catch (err) {
-            baseError.log = `Error caught in signInController: ${err}`;
-            baseError.message.err = `Could not sign up user`;
-            return next(baseError);
-        }
+
+        // encrypt password here
+        const SALT_WORK_FACTOR = 10;
+        bcrypt.hash(password, SALT_WORK_FACTOR, async (err: Error, hashedPassword: string) => {
+            if (err) {
+                baseError.log = `Error caught in signInController: ${err}`;
+                baseError.message.err = `Could not encrypt password`;
+                return next(baseError);
+            }
+            password = hashedPassword;
+            const values = [username, password]
+            const userInsert = `INSERT INTO users (username, password)
+            VALUES ($1, $2)`
+            const userQuery = 
+                `SELECT *
+                FROM users
+                WHERE username=$1 AND password=$2`
+            try {
+                const result = await db.query(userInsert, values);
+                // set cookies with user_id and username here
+                // find user
+                const user = await db.query(userQuery, values);
+                const user_id = user.rows[0].user_id;
+                res.cookie('user_id', user_id);
+                res.cookie('username', username);
+                res.locals.verified = "true"
+                return next();
+            } catch (err){
+                baseError.log = `Error caught in signInController: ${err}`;
+                baseError.message.err = `Could not sign up user`;
+                return next(baseError);
+            }
+        })
     }
 }
