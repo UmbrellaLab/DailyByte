@@ -1,3 +1,30 @@
 * {
-    background-color: aqua;
+    background-color: rgb(55, 55, 55);
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100vh;
+}
+
+h1 {
+    background-color: rgb(138, 138, 138);
+    text-align: center;
+    padding: 0.5em;
+}
+
+.auth-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 0.5em;
+    padding: 1em;
 }
