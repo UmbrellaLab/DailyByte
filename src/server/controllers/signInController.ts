@@ -40,5 +40,22 @@ export const signInController = {
             baseError.message.err = `Could not sign in user`;
             return next(baseError);
         }
+    },
+    signUpUser: async (req: Request, res: Response, next: NextFunction) => {
+        // get username and password from request body
+        const {username, password} = req.body;
+        const values = [username, password]
+        const userInsert = `INSERT INTO users (username, password)
+        VALUES ($1, $2)`
+        try {
+            const result = await db.query(userInsert, values);
+            // set cookies with user_id and pw here
+            console.log(result);
+            return next();
+        } catch (err){
+            baseError.log = `Error caught in signInController: ${err}`;
+            baseError.message.err = `Could not sign up user`;
+            return next(baseError);
+        }
     }
 }
