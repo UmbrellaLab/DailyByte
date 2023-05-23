@@ -8,7 +8,7 @@ import Solutions from './Solutions';
 const Home = () => {
   const [codeEditorValue, setCodeEditorValue] = useState('');
   const [promptData, setPromptData] = useState('');
-  const [solutions, setSolutions] = useState();
+  const [solutions, setSolutions] = useState([]);
 
   useEffect(() => {
     // Function to make a request for the latest algorithm and pass it down to the Prompt component
@@ -24,6 +24,7 @@ const Home = () => {
 
     fetchLatestAlgorithm();
   }, []);
+
 
   const handleSubmit = () => {
     fetch('/solutions', {
@@ -57,7 +58,7 @@ const Home = () => {
           id='code-mirror'
           value='//Hello World!'
           theme='dark'
-          onChange={(newCode) => setCode(newCode)}
+          onChange={(newCode) => setCodeEditorValue(newCode)}
           extensions={[javascript({ jsx: true }), EditorView.lineWrapping]}
         />
         <button id='submit-code' name='submit-code' type='button' onClick={handleSubmit}>
