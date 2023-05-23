@@ -28,13 +28,32 @@ export const solutionsController = {
         VALUES($1, $2, $3, $4);`
         try {
             db.query(insert, valueArray);
-            console.log('inserted solution!')
+            console.log('inserted solution!');
             return next();
         }
         catch (err) {
-            baseError.log = `Error caught in solutionsController: ${err}`;
+            baseError.log = `Error caught in postSolution: ${err}`;
             baseError.message.err = `Could not insert solution`;
             return next(baseError);
         }
+    },
+  getSolutions: async (req: Request, res: Response, next: NextFunction) => {
+    let dat = new Date();
+    let date = `${dat.getFullYear()}${dat.getMonth()}${dat.getDate()}`;
+    const dateArr = [date]
+    const getSolutionsQuery = `SELECT solution_id, user_id, solution, star_count
+    FROM solutions WHERE algo_id=($1)
+    ORDER BY star_count ASC`
+    try {
+      const result = db.query(getSolutionsQuery, dateArr);
+      console.log('result from getSolutions', result);
+      res.locals.solutions = result.rows;
+      return next();
     }
+    catch(err) {
+      baseError.log = `Error caught in getSolutions: ${err}`;
+      baseError.message.err = `Could not retrieve solutions`;
+      return next(baseError);
+    }
+  }
 }

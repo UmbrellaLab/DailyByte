@@ -28,8 +28,7 @@ export const dailyAlgoController: dailyAlgoController = {
     WHERE algo_id=($1);`;
     try {
       const result = await db.query(algoQuery, dateArr);
-      console.log("result from query", result);
-      res.locals.algo = result;
+      res.locals.algo = result.rows[0];
       return next();
     } catch (err) {
       baseError.log = `Error caught in getAlgo: ${err}`;
