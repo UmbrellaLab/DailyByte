@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Solutions = ({solutions}) => {
+  console.log("inside solutions")
   console.log(solutions[0])
   let printSolutions = []
   for (let key of solutions) {

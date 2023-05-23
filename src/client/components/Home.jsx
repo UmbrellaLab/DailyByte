@@ -33,7 +33,7 @@ const Home = () => {
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        codeEditorValue: codeEditorValue
+        solution: codeEditorValue
       })
     })
     .then(res => res.json())
