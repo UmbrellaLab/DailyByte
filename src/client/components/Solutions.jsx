@@ -6,7 +6,7 @@ const Solutions = ({solutions}) => {
   let printSolutions = []
   for (let key of solutions) {
     printSolutions.push(
-    `Top Solution User ${key.user_id} 
+    `Top Solution User ${key.username} 
      
      Top Solution ${key.solution}
   `

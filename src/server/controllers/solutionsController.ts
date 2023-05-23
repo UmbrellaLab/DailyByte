@@ -17,7 +17,7 @@ export const solutionsController = {
         // get user_id from cookies
         // get date from date.now()
         // get date, solution from request body
-        console.log(req.body)
+
         const user = req.cookies.username;
         let dat = new Date();
         let date = `${dat.getFullYear()}${dat.getMonth()}${dat.getDate()}`;
