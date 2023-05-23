@@ -25,7 +25,7 @@ const Home = () => {
   }, []);
 
   const handleSubmit = () => {
-    fetch('/path', {
+    fetch('/solutions', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -39,7 +39,7 @@ const Home = () => {
       setSolutions(data);
     })
     .catch(err => {
-      console.log('Error connecting to server using path \'/path\'');
+      console.log('Error connecting to server using path \'/solutions\'');
     })
   };
 
