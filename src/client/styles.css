@@ -75,6 +75,7 @@ h2 {
 .home-page {
     height: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 #algo-content {
@@ -102,7 +103,7 @@ h2 {
     grid-row-start: 3;
     grid-row-end: 7;
     background-color: rgb(68, 68, 142);
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 #code-mirror {
