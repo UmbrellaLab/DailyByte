@@ -9,9 +9,9 @@ const CreateAccount = () => {
     <div className={'auth-content'}>
       <Form method="post" className={'auth-form'}>
         <input type='text' id='username' name='username' placeholder='username'
-            onChange={() => {}}/>
+          onChange={() => { }} />
         <input type='password' id='password' name='password' placeholder='password'
-            onChange={() => {}}/>
+          onChange={() => { }} />
         <button type='submit'>Create Account</button>
       </Form>
     </div>

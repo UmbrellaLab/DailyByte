@@ -23,12 +23,16 @@
     "@codemirror/lang-javascript": "^6.1.8",
     "@codemirror/view": "^6.12.0",
     "@uiw/react-codemirror": "^4.20.2",
+    "bundler": "^0.8.0",
+    "codemirror": "^6.0.1",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
+    "module": "^1.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.11.2",
     "react-router-dom": "^6.11.2",
+    "resolution": "^1.0.5",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

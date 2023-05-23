@@ -3,7 +3,7 @@
       "jsx": "react",
       "module": "commonjs",
       "esModuleInterop": true,
-      "noImplicitAny": true
+      "noImplicitAny": true,
     },
       "include": ["src/**/*"]
   }
