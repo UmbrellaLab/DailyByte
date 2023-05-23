@@ -14,24 +14,13 @@ app.use(cookieParser());
 // serve login page
 app.use(express.static(path.resolve(__dirname, '../client')));
 
-app.get('/api', (req: Request, res: Response) => {
-    res.send('Hello world!')
-})
-
 app.get('/', (req: Request, res: Response) => {
     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+// send requests to algos to algo router
+app.use('/algo', algoRouter);
+
 app.listen(port, () => {
     console.log(`Beep boop, listening on port ${port}`)
-})
-
-// app.use(express.static(path.resolve(__dirname, '../client')));
-
-// app.use(cookieParser());
-
-// // Minzo: on get req to /, send index.html
-
-// app.get('/', (req, res) => {
-//     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-// });
+});
