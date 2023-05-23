@@ -3,12 +3,15 @@ import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from '@codemirror/view';
 import { javascript } from '@codemirror/lang-javascript';
 import Prompt from './Prompt';
-import Prompt from './Solutions';
+import Solutions from './Solutions';
 
 const Home = () => {
   const [code, setCode] = useState();
   const [promptData, setPromptData] = useState();
-  const [solutionsData, setSolutionsData] = useState([]);
+  const [solutionsData, setSolutionsData] = useState([{
+    user_id: "gary",
+    solution: "rubber duck"
+  }]);
 
   useEffect(() => {
     // Function to make a request for the latest algorithm and pass it down to the Prompt component
@@ -25,27 +28,25 @@ const Home = () => {
     fetchLatestAlgorithm();
   }, []);
 
-    // Function to make a request for the latest algorithm and pass it down to the Prompt component
-    // const fetchLatestSolutions = async () => {
-    //   try {
-    //     const response = await fetch('/solutions');
-    //     const data = await response.json();
-    //     setSolutions(data);
-    //   } catch (error) {
-    //     console.log('Error retrieving the latest algorithm:', error);
-    //   }
-    // };
+  // Function to make a request for the latest algorithm and pass it down to the Prompt component
+  // const fetchLatestSolutions = async () => {
+  //   try {
+  //     const response = await fetch('/solutions');
+  //     const data = await response.json();
+  //     setSolutions(data);
+  //   } catch (error) {
+  //     console.log('Error retrieving the latest algorithm:', error);
+  //   }
+  // };
 
-    // fetchLatestSolutions();
+  // fetchLatestSolutions();
 
 
   return (
     <div className='home-page'>
       <div id='algo-content'>
         <Prompt promptData={promptData} />
-        <div id='algo-solutions'>
-          <Solutions solutionsData={solutionsData} />
-        </div>
+        <Solutions solutionsData={solutionsData} />
         <CodeMirror
           id='code-mirror'
           value='//Hello World!'

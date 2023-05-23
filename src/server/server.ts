@@ -20,14 +20,17 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+app.post('/signin', (req: Request, res: Response) => {
+    console.log('entered sign in route')
+    res.status(200).send("true");
+})
+
 // send requests to algos to algo router
 app.use('/algo', algoRouter);
 
 app.use('/solutions', solutionRouter)
 
-app.post('/signin', (req: Request, res: Response) => {
-    res.status(200).send("true");
-})
+
 
 app.use((req: Request, res: Response) => {
     res.status(404).send('Cannot get page!');
