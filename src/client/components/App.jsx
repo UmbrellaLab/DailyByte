@@ -6,7 +6,7 @@ import {
 
 import Login from './Login';
 import CreateAccount from './CreateAccount';
-// import Home from './Home';
+import Home from './Home';
 
 const router = createBrowserRouter([
     {
@@ -17,10 +17,10 @@ const router = createBrowserRouter([
         path: '/createAccount',
         element: <CreateAccount />,
     },
-    // {
-    //     path: '/home',
-    //     element: <Home />,
-    // }
+    {
+        path: '/home',
+        element: <Home />,
+    }
 ]);
 
 const App = () => {
