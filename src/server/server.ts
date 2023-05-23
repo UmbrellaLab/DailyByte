@@ -21,6 +21,7 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+
 // send requests to algos to algo router
 app.use('/algo', algoRouter);
 

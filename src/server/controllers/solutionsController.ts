@@ -17,6 +17,7 @@ export const solutionsController = {
         // get user_id from cookies
         // get date from date.now()
         // get date, solution from request body
+
         const user = req.cookies.username;
         let dat = new Date();
         let date = `${dat.getFullYear()}${dat.getMonth()}${dat.getDate()}`;
@@ -25,6 +26,8 @@ export const solutionsController = {
         const valueArray = [user, date, 0, solution];
         const insert = `INSERT INTO solutions (username, algo_id, star_count, solution) 
         VALUES($1, $2, $3, $4);`
+        console.log(valueArray)
+
         try {
             await db.query(insert, valueArray);
             console.log('inserted solution!');
