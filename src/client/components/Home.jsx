@@ -14,9 +14,12 @@ const Home = () => {
     // Function to make a request for the latest algorithm and pass it down to the Prompt component
     const fetchLatestAlgorithm = async () => {
       try {
-        const response = await fetch('/daily');
+        const response = await fetch('/algo/daily');
         const data = await response.json();
+        console.log('inside use effect daily')
+        console.log(data)
         setPromptData(data);
+
       } catch (error) {
         console.log('Error retrieving the latest algorithm:', error);
       }
@@ -36,13 +39,13 @@ const Home = () => {
         solution: codeEditorValue
       })
     })
-    .then(res => res.json())
-    .then((data) => {
-      setSolutions(data);
-    })
-    .catch(err => {
-      console.log('Error connecting to server using path \'/solutions\'');
-    })
+      .then(res => res.json())
+      .then((data) => {
+        setSolutions(data);
+      })
+      .catch(err => {
+        console.log('Error connecting to server using path \'/solutions\'');
+      })
   };
 
   const handleClear = () => {
