@@ -7,6 +7,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const algoRouter = require('./routes/algo');
 const solutionRouter = require('./routes/solutions')
+import {signInController} from './controllers/signInController';
 
 // parse any incoming requests & cookies
 app.use(express.json());
@@ -25,8 +26,14 @@ app.use('/algo', algoRouter);
 
 app.use('/solutions', solutionRouter)
 
-app.post('/signin', (req: Request, res: Response) => {
-    res.status(200).send("true");
+// sign in user
+app.post('/signin', signInController.verifyUser, (req: Request, res: Response) => {
+    res.status(200).send(res.locals.verified);
+})
+
+// sign up new user
+app.post('/signup', signInController.signUpUser, (req: Request, res: Response) => {
+    res.status(200).send(res.locals.verified);
 })
 
 app.use((req: Request, res: Response) => {

@@ -20,15 +20,50 @@ export const signInController = {
         const {username, password} = req.body;
         const values = [username, password]
         const userQuery = 
-            `SELECT username, password
+            `SELECT *
             FROM users
             WHERE username=$1 AND password=$2`
         try {
-            const result = db.query(userQuery, values);
-            
+            const result = await db.query(userQuery, values);
+            if (result.rows.length === 1){
+                res.locals.verified = "true";
+                // set cookie with user ID
+                res.cookie('user_id', result.rows._id);
+                res.cookie('username', username);
+                return next();
+            } else {
+                res.locals.verified = 'false';
+                return next();
+            }
         } catch (err){
             baseError.log = `Error caught in signInController: ${err}`;
             baseError.message.err = `Could not sign in user`;
+            return next(baseError);
+        }
+    },
+    signUpUser: async (req: Request, res: Response, next: NextFunction) => {
+        // get username and password from request body
+        const {username, password} = req.body;
+        const values = [username, password]
+        // need to make sure user with same username does not exist (?)
+        const userInsert = `INSERT INTO users (username, password)
+        VALUES ($1, $2)`
+        const userQuery = 
+            `SELECT *
+            FROM users
+            WHERE username=$1 AND password=$2`
+        try {
+            const result = await db.query(userInsert, values);
+            // set cookies with user_id and username here
+            // find user
+            const user = await db.query(userQuery, values);
+            const user_id = user.rows.user_id;
+            res.cookie('user_id', user_id);
+            res.cookie('username', username);
+            return next();
+        } catch (err){
+            baseError.log = `Error caught in signInController: ${err}`;
+            baseError.message.err = `Could not sign up user`;
             return next(baseError);
         }
     }
