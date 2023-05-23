@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CodeSnippet } from '@carbon/react';
-import { Prism } from '@mantine/prism'
 
 const Solution = ({solutionData}) => {
+  const [stars, setStars] = useState(solutionData.star_count);
+
+  const handleStar = (id) => {
+    patch('/solutions', {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        solution_id: id
+      })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      setSolutions(data);
+    })
+    .catch(err => {
+      console.log('Error connecting to server using path \'/solutions\'');
+    })
+  };
+
   return (
     <div>
       <p className='usernameHeader'>{solutionData.username}</p>
