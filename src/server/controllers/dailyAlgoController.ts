@@ -19,16 +19,18 @@ type dailyAlgoController = {
 
 export const dailyAlgoController: dailyAlgoController = {
   getAlgo: async (req: Request, res: Response, next: NextFunction) => {
-    //parse date here - figure out how we will store this date - has to be a string
-    const theDate = "123";
-    const dateArr = [theDate];
+    let dat = new Date();
+    let date = `${dat.getFullYear()}${dat.getMonth()}${dat.getDate()}`;
+    const dateArr = [date];
+    console.log(date)
     const algoQuery = `SELECT problem_name, problem
-  FROM algos
-  WHERE algo_id=($1);`;
+    FROM algos
+    WHERE algo_id=($1);`;
     try {
       const result = await db.query(algoQuery, dateArr);
       console.log("result from query", result);
       res.locals.algo = result;
+      return next();
     } catch (err) {
       baseError.log = `Error caught in getAlgo: ${err}`;
       baseError.message.err = `Could not retrieve daily algo`;
