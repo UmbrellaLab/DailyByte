@@ -26,7 +26,13 @@ app.use('/algo', algoRouter);
 
 app.use('/solutions', solutionRouter)
 
+// sign in user
 app.post('/signin', signInController.verifyUser, (req: Request, res: Response) => {
+    res.status(200).send(res.locals.verified);
+})
+
+// sign up new user
+app.post('/signup', signInController.signUpUser, (req: Request, res: Response) => {
     res.status(200).send(res.locals.verified);
 })
 

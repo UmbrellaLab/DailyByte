@@ -45,12 +45,21 @@ export const signInController = {
         // get username and password from request body
         const {username, password} = req.body;
         const values = [username, password]
+        // need to make sure user with same username does not exist (?)
         const userInsert = `INSERT INTO users (username, password)
         VALUES ($1, $2)`
+        const userQuery = 
+            `SELECT *
+            FROM users
+            WHERE username=$1 AND password=$2`
         try {
             const result = await db.query(userInsert, values);
-            // set cookies with user_id and pw here
-            console.log(result);
+            // set cookies with user_id and username here
+            // find user
+            const user = await db.query(userQuery, values);
+            const user_id = user.rows.user_id;
+            res.cookie('user_id', user_id);
+            res.cookie('username', username);
             return next();
         } catch (err){
             baseError.log = `Error caught in signInController: ${err}`;
