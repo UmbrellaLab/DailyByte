@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 const App = () => {
     return (
         <>
-            <h1>Algos Digest</h1>
+            <h1>Daily Byte</h1>
             {/* <React.StrictMode> */}
                 <RouterProvider router={router} />
             {/* </React.StrictMode> */}
