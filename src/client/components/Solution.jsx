@@ -5,7 +5,7 @@ const Solution = ({solutionData}) => {
   const [stars, setStars] = useState(solutionData.star_count);
 
   const handleStar = (id) => {
-    patch('/solutions', {
+    fetch('/solutions', {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
@@ -16,7 +16,7 @@ const Solution = ({solutionData}) => {
     })
     .then(res => res.json())
     .then((data) => {
-      setSolutions(data);
+      setStars(data);
     })
     .catch(err => {
       console.log('Error connecting to server using path \'/solutions\'');
@@ -26,8 +26,8 @@ const Solution = ({solutionData}) => {
   return (
     <div>
       <p className='usernameHeader'>{solutionData.username}</p>
-      <button >Star</button>
-      <p>{solutionData.star_count}</p>
+      <button onClick={() => handleStar(solutionData.solution_id)}>Star</button>
+      <p>{stars}</p>
       <div className='code-snippet'>
         <CodeSnippet type='multi' wrapText='true' copyButtonDescription=''>{solutionData.solution}</CodeSnippet>
       </div> 

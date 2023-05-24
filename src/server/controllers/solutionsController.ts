@@ -63,10 +63,12 @@ export const solutionsController = {
     const solutionArr = [solution_id]
     const updateStarsQuery = `UPDATE solutions
     SET star_count = star_count + 1
-    WHERE solution_id=($1)`
+    WHERE solution_id=($1)
+    RETURNING star_count`
     try {
-      await db.query(updateStarsQuery, solutionArr);
+      const result = await db.query(updateStarsQuery, solutionArr);
       console.log('updated star count!');
+      res.locals.stars = result.rows[0].star_count;
       return next();
     }
     catch(err) {
