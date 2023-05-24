@@ -11,7 +11,7 @@ interface solutionData {
 const Solution = ({solutionData}: {solutionData: solutionData}): JSX.Element => {
   const [stars, setStars] = useState(solutionData.star_count);
 
-  const handleStar = (id: number) => {
+  const handleStar = (id) => {
     fetch('/solutions', {
       method: 'PATCH',
       headers: {
@@ -44,5 +44,3 @@ const Solution = ({solutionData}: {solutionData: solutionData}): JSX.Element => 
     </div>
   )
 };
-
-export default Solution;
