@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useEffect } from "react";
 
 const Login= () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [invalidMsg, setInvalidMsg] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    
+  }, []);
+
+  const Client_ID = "473a8476fcc6e8de6ca3";
+
+  function loginWithGithub() {
+    window.location.assign("https://github.com/login/oauth/authorize?client_id=" + Client_ID);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +54,10 @@ const Login= () => {
         <p className='invalidMsg'>{invalidMsg}</p>
 
         <Link to={'/createAccount'}>Create Account</Link>
-
+        <div>
+        <button onClick={loginWithGithub}>Login with Github</button>
+        </div>
+       
         {/* GitHub Authentication */}
 
       </form>
