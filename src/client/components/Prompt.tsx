@@ -5,8 +5,10 @@ const Prompt = ({promptData}): JSX.Element => {
   return (
     <div id='algo-prompt'>
       <h2>Challenge of the day</h2>
-      <p>{promptData.problem_name}</p>
-      <p>{promptData.problem}</p>
+      <h3>{promptData.problem_name}</h3>
+      <div>
+        <p>{promptData.problem}</p>
+      </div>
     </div>
   )
 }
