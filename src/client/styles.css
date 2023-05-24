@@ -96,6 +96,7 @@ h3 {
 #algo-content {
     height: 100%;
     max-width: 1200px;
+    max-height: 840px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -128,12 +129,12 @@ h3 {
     box-shadow: 2px 2px 5px rgb(74, 74, 74);
     border-radius: 10px;
     padding: 10px 20px;
+    overflow: auto;
 }
 
-#solutions-container {
-    height: 400px;
-    overflow-y: auto;
-}
+/* #solutions-container {
+    overflow: auto;
+} */
 
 #code-mirror {
     grid-column-start: 5;
