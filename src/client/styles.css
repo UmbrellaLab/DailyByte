@@ -83,7 +83,7 @@ h2 {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     column-gap: 20px;
     row-gap: 20px;
 }
@@ -92,15 +92,15 @@ h2 {
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 4;
     background-color: rgb(68, 68, 142);
 }
 
 #algo-solutions {
     grid-column-start: 1;
     grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 8;
     background-color: rgb(68, 68, 142);
     overflow-y: auto;
 }
@@ -109,7 +109,7 @@ h2 {
     grid-column-start: 5;
     grid-column-end: 11;
     grid-row-start: 1;
-    grid-row-end: 6;
+    grid-row-end: 7;
     background-color: rgb(255, 255, 255);
 }
 
@@ -131,19 +131,20 @@ h2 {
 #submit-code {
     grid-column-start: 5;
     grid-column-end: 8;
-    grid-row-start: 6;
-    grid-row-end: 7;
+    grid-row-start: 7;
+    grid-row-end: 8;
 }
 
 #clr-editor {
     grid-column-start: 8;
     grid-column-end: 11;
-    grid-row-start: 6;
-    grid-row-end: 7;
+    grid-row-start: 7;
+    grid-row-end: 8;
 }
 
 .code-snippet {
     background-color: rgb(33, 36, 41);
     color: rgb(253, 249, 249);
     margin-bottom: 15px;
+    padding: 5px;
 }
