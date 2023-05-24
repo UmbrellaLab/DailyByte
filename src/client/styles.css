@@ -1,25 +1,36 @@
+@import url('https://fonts.cdnfonts.com/css/russo-one');
+
 * {
     margin: 0;
     padding: 0;
     font-family: monospace;
+    /* font-family: 'Russo One', sans-serif; */
 }
 
 #root {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: rgb(185, 185, 185);
+    background: rgb(251,230,241);
+    background: radial-gradient(circle, rgba(251,230,241,1) 0%, rgba(255,220,146,1) 100%);
 }
 
 h1 {
-    background-color: rgb(68, 68, 142);
+    font-size: 50px;
     text-align: center;
     padding: 0.5em;
+    font-family: 'Russo One', sans-serif;
+    margin-bottom: 0;
 }
 
 h2 {
     text-align: center;
     padding: 0.5em;
+    font-family: 'Russo One', sans-serif;
+}
+
+p {
+    display: inline;
 }
 
 .auth-content {
@@ -37,9 +48,9 @@ h2 {
     text-align: center;
     width: 300px;
     height: 200px;
-    border: 1px solid rgb(68, 68, 142);
+    border: 1px solid rgb(249,200,226);
     border-radius: 1.5em;
-    background-color: rgb(68, 68, 142);
+    background-color: rgb(249,200,226);
     padding: 1.5em;
     margin: 1em;
 }
@@ -75,6 +86,7 @@ h2 {
 .home-page {
     height: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 #algo-content {
@@ -92,37 +104,18 @@ h2 {
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 1;
-    grid-row-end: 4;
-    background-color: rgb(68, 68, 142);
+    grid-row-end: 3;
+    background-color: rgb(249,200,226);
+    border-radius: 10px;
 }
 
 #algo-solutions {
     grid-column-start: 1;
     grid-column-end: 5;
-    grid-row-start: 4;
-    grid-row-end: 8;
+    grid-row-start: 3;
+    grid-row-end: 7;
     background-color: rgb(68, 68, 142);
     overflow-y: auto;
-}
-
-.solution {
-    margin-bottom: 20px;
-}
-
-.usernameHeader {
-    padding: 5px;
-}
-
-.usernameHeader button {
-    margin-left: 20px;
-    margin-right: 5px;
-    background-color: yellow;
-}
-
-.code-snippet {
-    background-color: rgb(33, 36, 41);
-    color: rgb(253, 249, 249);
-    padding: 10px;
 }
 
 #code-mirror {
@@ -151,13 +144,27 @@ h2 {
 #submit-code {
     grid-column-start: 5;
     grid-column-end: 8;
-    grid-row-start: 7;
-    grid-row-end: 8;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    border-radius: 10px;
 }
 
 #clr-editor {
     grid-column-start: 8;
     grid-column-end: 11;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    border-radius: 10px;
+}
+
+.code-snippet {
+    background-color: rgb(33, 36, 41);
+    color: rgb(253, 249, 249);
+    margin-bottom: 15px;
     grid-row-start: 7;
     grid-row-end: 8;
+}
+
+.usernameHeader {
+    display: block;
 }
