@@ -12,8 +12,8 @@ router.post('/', solutionsController.postSolution, solutionsController.getSoluti
     res.status(200).send(res.locals.solutions);
 })
 
-router.patch('/', solutionsController.updateStars, solutionsController.getSolutions, (req: Request, res: Response) => {
-    res.status(200).send(res.locals.solutions);
+router.patch('/', solutionsController.updateStars, (req: Request, res: Response) => {
+    res.status(200).json(res.locals.stars);
 })
 
 module.exports = router;

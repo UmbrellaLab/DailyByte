@@ -92,16 +92,17 @@ h2 {
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 1;
-    grid-row-end: 4;
+    grid-row-end: 3;
     background-color: rgb(68, 68, 142);
 }
 
 #algo-solutions {
     grid-column-start: 1;
     grid-column-end: 5;
-    grid-row-start: 4;
+    grid-row-start: 3;
     grid-row-end: 7;
     background-color: rgb(68, 68, 142);
+    overflow-y: auto;
 }
 
 #code-mirror {
@@ -139,4 +140,10 @@ h2 {
     grid-column-end: 11;
     grid-row-start: 6;
     grid-row-end: 7;
+}
+
+.code-snippet {
+    background-color: rgb(33, 36, 41);
+    color: rgb(253, 249, 249);
+    margin-bottom: 15px;
 }
