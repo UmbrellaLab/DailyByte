@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Prompt = ({promptData}) => {
+const Prompt = ({promptData}): JSX.Element => {
 
   return (
     <div id='algo-prompt'>
