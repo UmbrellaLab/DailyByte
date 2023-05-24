@@ -1,45 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [invalidMsg, setInvalidMsg] = useState('');
   const navigate = useNavigate();
+  const [githubUsername, setGithubUsername] = useState('');
 
-  const [reRender, setReRender] = useState(false);
+  const [loggedInWithGithub, setLoggedInWithGithub] = useState(false);
 
   useEffect(() => {
-    //  localhost:8080/home?code=5b6ca9e372efce21fc2e
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const codeParam = urlParams.get("code");
-    console.log(codeParam)
 
-    // this will be stored in local storage
-    // would be better to store with https to avoid security concerns,
-    //but this will work for now
-
-    if (codeParam && (localStorage.getItem("accessToken") === null)) {
+    if (codeParam && localStorage.getItem("accessToken") === null) {
       const getAccessToken = async () => {
         await fetch("http://localhost:3000/getAccessToken?code=" + codeParam, {
           method: "GET"
         }).then((response) => {
           return response.json();
         }).then((data) => {
-          console.log('inside login useEffect')
-          console.log(data);
           if (data.access_token) {
             localStorage.setItem("accessToken", data.access_token);
-            setReRender(!reRender)
+            setLoggedInWithGithub(true);
           }
-        })
-      }
-      getAccessToken()
+        });
+      };
+
+      getAccessToken();
     }
 
-  }, []);
+    if (loggedInWithGithub) {
+      getUserData();
+    }
+  }, [loggedInWithGithub]);
 
   const getUserData = async () => {
     await fetch("http://localhost:3000/getUserData", {
@@ -50,13 +46,14 @@ const Login = () => {
     }).then((response) => {
       return response.json();
     }).then((data) => {
+      console.log('inside getUserData fetch response')
       console.log(data);
+      navigate('/Home');
     })
   }
-
-  const Client_ID = "473a8476fcc6e8de6ca3";
-
+  
   function loginWithGithub() {
+    const Client_ID = "473a8476fcc6e8de6ca3";
     window.location.assign("https://github.com/login/oauth/authorize?client_id=" + Client_ID);
   }
 
@@ -99,6 +96,7 @@ const Login = () => {
 
 
 
+        {/* GitHub Authentication */}
         {localStorage.getItem("accessToken") ?
           <>
             <Link to={'/Home'}>github Login Successful submit</Link>
@@ -109,12 +107,10 @@ const Login = () => {
             <button onClick={loginWithGithub}>Login with Github</button>
           </>
         }
-
-        ``        {/* GitHub Authentication */}
-
       </form>
     </div>
   )
 }
 
 export default Login;
+
