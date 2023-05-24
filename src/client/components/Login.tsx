@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 
 const Login= () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const Login= () => {
     window.location.assign("https://github.com/login/oauth/authorize?client_id=" + Client_ID);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     fetch('/signin', {
       method: 'POST',

@@ -7,7 +7,7 @@ import Solutions from './Solutions';
 
 const Home = () => {
   const [codeEditorValue, setCodeEditorValue] = useState('');
-  const [promptData, setPromptData] = useState('');
+  const [promptData, setPromptData] = useState({problem_name: '', problem: ''});
   const [solutions, setSolutions] = useState([]);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ const Home = () => {
       .then(res => res.json())
       .then((data) => {
         setSolutions(data);
+        console.log(solutions);
       })
       .catch(err => {
         console.log('Error connecting to server using path \'/solutions\'');

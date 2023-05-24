@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     fetch('/signup', {
       method: 'POST',
