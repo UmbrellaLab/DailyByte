@@ -1,9 +1,14 @@
 import React from 'react';
 import Solution from './Solution';
 
-const Solutions = ({solutions}) => {
-  console.log('solutions', solutions);
+interface Solution {
+  solution_id: number;
+  username: string;
+  solution: string;
+  star_count: number;
+}
 
+const Solutions = ({ solutions }: { solutions: Solution[] }): JSX.Element => {
   let displaySolutions = [];
 
   for (const solution of solutions) {

@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Prompt = ({promptData}): JSX.Element => {
+interface Prompt {
+  problem_name: string;
+  problem: string;
+}
+
+const Prompt = ({promptData}: {promptData: Prompt}): JSX.Element => {
 
   return (
     <div id='algo-prompt'>
@@ -14,14 +19,3 @@ const Prompt = ({promptData}): JSX.Element => {
 }
 
 export default Prompt;
-
-// {problem_name: 'No Duplicates', problem: 'Given an array of integers return an array with th…tes removed [1,2,3,3,4,5,6,1,1] ==> [1,2,3,4,5,6]'}
-// problem
-// : 
-// "Given an array of integers return an array with the duplicates removed [1,2,3,3,4,5,6,1,1] ==> [1,2,3,4,5,6]"
-// problem_name
-// : 
-// "No Duplicates"
-// [[Prototype]]
-// : 
-// Object
