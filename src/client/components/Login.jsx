@@ -9,7 +9,12 @@ const Login= () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
+    //  localhost:8080/home?code=5b6ca9e372efce21fc2e
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const codeParam = urlParams.get("code");
+    console.log(codeParam)
+
   }, []);
 
   const Client_ID = "473a8476fcc6e8de6ca3";
