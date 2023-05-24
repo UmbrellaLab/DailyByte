@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Prompt = ({promptData}) => {
+interface promptData {
+  problem_name: string;
+  problem: string;
+}
+
+const Prompt = (promptData: promptData): JSX.Element => {
 
   return (
     <div id='algo-prompt'>
