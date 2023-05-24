@@ -15,6 +15,9 @@ const algoRouter = require('./routes/algo');
 const solutionRouter = require('./routes/solutions')
 import {signInController} from './controllers/signInController';
 
+const CLIENT_ID = "473a8476fcc6e8de6ca3";
+const ClIENT_SECRET = "";
+
 // parse any incoming requests & cookies
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

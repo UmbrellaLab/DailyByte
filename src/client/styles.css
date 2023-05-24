@@ -1,25 +1,40 @@
+@import url('https://fonts.cdnfonts.com/css/russo-one');
+
 * {
     margin: 0;
     padding: 0;
     font-family: monospace;
+    /* font-family: 'Russo One', sans-serif; */
+}
+
+button {
+    cursor: pointer;
 }
 
 #root {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: rgb(185, 185, 185);
+    background: rgb(251,230,241);
+    background: radial-gradient(circle, rgba(251,230,241,1) 0%, rgba(255,220,146,1) 100%);
 }
 
 h1 {
-    background-color: rgb(68, 68, 142);
+    font-size: 50px;
     text-align: center;
     padding: 0.5em;
+    font-family: 'Russo One', sans-serif;
+    margin-bottom: 0;
 }
 
 h2 {
     text-align: center;
-    padding: 0.5em;
+    padding-bottom: 0.5em;
+    font-family: 'Russo One', sans-serif;
+}
+
+h3 {
+    text-align: center;
 }
 
 .auth-content {
@@ -37,9 +52,9 @@ h2 {
     text-align: center;
     width: 300px;
     height: 200px;
-    border: 1px solid rgb(68, 68, 142);
+    border: 1px solid rgb(249,200,226);
     border-radius: 1.5em;
-    background-color: rgb(68, 68, 142);
+    background-color: rgb(249,200,226);
     padding: 1.5em;
     margin: 1em;
 }
@@ -75,6 +90,7 @@ h2 {
 .home-page {
     height: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 #algo-content {
@@ -83,7 +99,7 @@ h2 {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     column-gap: 20px;
     row-gap: 20px;
 }
@@ -93,15 +109,29 @@ h2 {
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 3;
-    background-color: rgb(68, 68, 142);
+    background-color: rgb(249,200,226);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(74, 74, 74);
+    padding: 10px 20px;
+}
+
+#algo-prompt div {
+    overflow-y: auto;
 }
 
 #algo-solutions {
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 3;
-    grid-row-end: 7;
-    background-color: rgb(68, 68, 142);
+    grid-row-end: 8;
+    background-color: rgb(249,200,226);
+    box-shadow: 2px 2px 5px rgb(74, 74, 74);
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+#solutions-container {
+    height: 400px;
     overflow-y: auto;
 }
 
@@ -109,8 +139,9 @@ h2 {
     grid-column-start: 5;
     grid-column-end: 11;
     grid-row-start: 1;
-    grid-row-end: 6;
+    grid-row-end: 7;
     background-color: rgb(255, 255, 255);
+    /* box-shadow: 2px 2px 10px black; */
 }
 
 .cm-editor {
@@ -131,19 +162,43 @@ h2 {
 #submit-code {
     grid-column-start: 5;
     grid-column-end: 8;
-    grid-row-start: 6;
-    grid-row-end: 7;
+    grid-row-start: 7;
+    grid-row-end: 8;
 }
 
 #clr-editor {
     grid-column-start: 8;
     grid-column-end: 11;
-    grid-row-start: 6;
-    grid-row-end: 7;
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+#submit-code, #clr-editor {
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 4px rgba(95, 95, 95, 0.7);
+}
+
+#submit-code:hover, #clr-editor:hover {
+    background-color: bisque;
+}
+
+#submit-code:active, #clr-editor:active {
+    background-color: bisque;
+    transform: translateY(2px);
+    box-shadow: 0 2px rgba(95, 95, 95, 0.7);
 }
 
 .code-snippet {
     background-color: rgb(33, 36, 41);
     color: rgb(253, 249, 249);
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+.usernameHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }

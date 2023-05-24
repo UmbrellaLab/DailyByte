@@ -13,7 +13,9 @@ const Solutions = ({solutions}) => {
   return (
     <div id='algo-solutions'>
       <h2>Solutions of the day</h2>
-      {displaySolutions}
+      <div id='solutions-container'>
+        {displaySolutions}
+      </div>
     </div>
   )
 }
