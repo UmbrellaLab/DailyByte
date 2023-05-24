@@ -105,6 +105,26 @@ h2 {
     overflow-y: auto;
 }
 
+.solution {
+    margin-bottom: 20px;
+}
+
+.usernameHeader {
+    padding: 5px;
+}
+
+.usernameHeader button {
+    margin-left: 20px;
+    margin-right: 5px;
+    background-color: yellow;
+}
+
+.code-snippet {
+    background-color: rgb(33, 36, 41);
+    color: rgb(253, 249, 249);
+    padding: 10px;
+}
+
 #code-mirror {
     grid-column-start: 5;
     grid-column-end: 11;
@@ -140,11 +160,4 @@ h2 {
     grid-column-end: 11;
     grid-row-start: 7;
     grid-row-end: 8;
-}
-
-.code-snippet {
-    background-color: rgb(33, 36, 41);
-    color: rgb(253, 249, 249);
-    margin-bottom: 15px;
-    padding: 5px;
 }

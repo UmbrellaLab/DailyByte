@@ -24,12 +24,14 @@ const Solution = ({solutionData}) => {
   };
 
   return (
-    <div>
-      <p className='usernameHeader'>{solutionData.username}</p>
-      <button onClick={() => handleStar(solutionData.solution_id)}>Star</button>
-      <p>{stars}</p>
+    <div className='solution'>
+      <div className='usernameHeader'>
+        {solutionData.username}
+        <button onClick={() => handleStar(solutionData.solution_id)}>Star</button>
+        <span>{stars}</span>
+      </div>
       <div className='code-snippet'>
-        <CodeSnippet type='multi' wrapText='true' copyButtonDescription=''>{solutionData.solution}</CodeSnippet>
+        <CodeSnippet type='multi' wrapText={true} copyButtonDescription=''>{solutionData.solution}</CodeSnippet>
       </div> 
     </div>
   )
