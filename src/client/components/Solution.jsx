@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { CodeSnippet } from '@carbon/react';
 
-const Solution = ({solutionData}): JSX.Element => {
+const Solution = ({solutionData}) => {
   const [stars, setStars] = useState(solutionData.star_count);
 
-  const handleStar = (id: number) => {
+  const handleStar = (id) => {
     fetch('/solutions', {
       method: 'PATCH',
       headers: {
