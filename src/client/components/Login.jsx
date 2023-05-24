@@ -8,12 +8,35 @@ const Login= () => {
   const [invalidMsg, setInvalidMsg] = useState('');
   const navigate = useNavigate();
 
+  const [reRender, setReRender] = useState(false);
+
   useEffect(() => {
     //  localhost:8080/home?code=5b6ca9e372efce21fc2e
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const codeParam = urlParams.get("code");
     console.log(codeParam)
+
+    // this will be stored in local storage
+    // would be better to store with https to avoid security concerns,
+    //but this will work for now
+
+    if (codeParam && (localStorage.getItem("accessToken") === null)) {
+      const getAccessToken = async () => {
+        await fetch("http://localhost:3000/getAccessToken?code=" + codeParam, {
+          method: "GET"
+        }).then((response) => {
+          return response.json();
+        }).then((data) => {
+          console.log(data);
+          if(data.access_token){
+            localStorage.setItem("accessToken", data.access_token);
+            setReRender(!reRender)
+          }
+        }) 
+      }
+      getAccessToken()
+    }
 
   }, []);
 
@@ -63,7 +86,7 @@ const Login= () => {
         <button onClick={loginWithGithub}>Login with Github</button>
         </div>
        
-        {/* GitHub Authentication */}
+``        {/* GitHub Authentication */}
 
       </form>
     </div>

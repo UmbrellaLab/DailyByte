@@ -9,8 +9,60 @@ const algoRouter = require('./routes/algo');
 const solutionRouter = require('./routes/solutions')
 import {signInController} from './controllers/signInController';
 
+/////////////////////////////////////////////////////////////////////
+////////////////////  GITHUB Oauth   ////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+const cors = require('cors')
+const fetch = (...args) =>
+    import('node-fetch').then(({default: fetch}) => fetch(...args));
+const bodyParser = require('body-parser');
+
 const CLIENT_ID = "473a8476fcc6e8de6ca3";
-const ClIENT_SECRET = "";
+const ClIENT_SECRET = "d18b10c46c30c99bffd9ff614ddb45be24b3b1bd";
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.get('/getAccessToken', async (req, res) => {
+
+    req.query.code;
+
+    const params = "?client_id" + CLIENT_ID + "&client_secret=" + ClIENT_SECRET + "&code=" + req.query.code;
+
+    await fetch("https://github.com/login/oauth/access_token" + params, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json"
+        }
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
+        console.log(data);
+        res.json(data);
+    })
+})
+
+//getUserData
+//access token is going to be passed in as an Authorization header
+
+app.get('/getUserData', async (req, res) => {
+    req.get("Authorization"); //bearer ACCESSTOKEN
+    await fetch("https://api.gethub.com/user", {
+        method: "GET",
+        headers: {
+            "Authorization" : req.get("Authorization") //bearer ACCESSTOKEN
+        }
+    }).then((response) => {
+        return response.json();
+    }) .then((data) => {
+        console.log(data);
+        res.json(data);
+    })
+});
+
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 
 // parse any incoming requests & cookies
 app.use(express.json());
