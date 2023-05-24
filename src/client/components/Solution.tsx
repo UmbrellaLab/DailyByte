@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { CodeSnippet } from '@carbon/react';
-const CodeSnippet = require('@carbon/react');
+import { CodeSnippet } from '@carbon/react';
 
 interface solutionData {
   solution_id: number;
@@ -9,7 +8,7 @@ interface solutionData {
   star_count: number;
 }
 
-const Solution = ({solutionData}: {solutionData: solutionData}) => {
+const Solution = ({solutionData}: {solutionData: solutionData}): JSX.Element => {
   const [stars, setStars] = useState(solutionData.star_count);
 
   const handleStar = (id: number) => {
