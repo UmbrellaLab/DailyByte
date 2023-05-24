@@ -7,6 +7,9 @@ import {
 import Login from './Login';
 import CreateAccount from './CreateAccount';
 import Home from './Home';
+import { io } from 'socket.io-client';
+
+io.connect('http://localhost:3001');
 
 const router = createBrowserRouter([
     {
