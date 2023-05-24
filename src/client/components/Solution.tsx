@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CodeSnippet } from '@carbon/react';
+const { CodeSnippet } = require('@carbon/react')
+// import { CodeSnippet } from '@carbon/react';
 
 interface solutionData {
   solution_id: number;
@@ -11,7 +12,7 @@ interface solutionData {
 const Solution = ({solutionData}: {solutionData: solutionData}): JSX.Element => {
   const [stars, setStars] = useState(solutionData.star_count);
 
-  const handleStar = (id) => {
+  const handleStar = (id: number) => {
     fetch('/solutions', {
       method: 'PATCH',
       headers: {
@@ -44,3 +45,5 @@ const Solution = ({solutionData}: {solutionData: solutionData}): JSX.Element => 
     </div>
   )
 };
+
+export default Solution;
