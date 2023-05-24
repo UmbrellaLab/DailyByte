@@ -27,9 +27,9 @@ const App = () => {
     return (
         <>
             <h1>Algo's Digest</h1>
-            <React.StrictMode>
+            {/* <React.StrictMode> */}
                 <RouterProvider router={router} />
-            </React.StrictMode>
+            {/* </React.StrictMode> */}
         </>
     )
 };
