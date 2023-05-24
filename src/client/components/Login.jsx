@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
 
-const Login= () => {
+
+const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [invalidMsg, setInvalidMsg] = useState('');
@@ -28,17 +28,31 @@ const Login= () => {
         }).then((response) => {
           return response.json();
         }).then((data) => {
+          console.log('inside login useEffect')
           console.log(data);
-          if(data.access_token){
+          if (data.access_token) {
             localStorage.setItem("accessToken", data.access_token);
             setReRender(!reRender)
           }
-        }) 
+        })
       }
       getAccessToken()
     }
 
   }, []);
+
+  const getUserData = async () => {
+    await fetch("http://localhost:3000/getUserData", {
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("accessToken") //BEARER ACCESSTOKEN
+      }
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+    })
+  }
 
   const Client_ID = "473a8476fcc6e8de6ca3";
 
@@ -82,11 +96,21 @@ const Login= () => {
         <p className='invalidMsg'>{invalidMsg}</p>
 
         <Link to={'/createAccount'}>Create Account</Link>
-        <div>
-        <button onClick={loginWithGithub}>Login with Github</button>
-        </div>
-       
-``        {/* GitHub Authentication */}
+
+
+
+        {localStorage.getItem("accessToken") ?
+          <>
+            <Link to={'/Home'}>github Login Successful submit</Link>
+          </>
+          :
+          <>
+            <h3>User is not logged in</h3>
+            <button onClick={loginWithGithub}>Login with Github</button>
+          </>
+        }
+
+        ``        {/* GitHub Authentication */}
 
       </form>
     </div>
