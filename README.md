@@ -22,8 +22,8 @@ cd DailyByteInstall dependencies:
 Start the application:
 `npm run dev`The application will be accessible at http://localhost:8080 by default.
 
-#Contributing
+# Contributing
 We welcome contributions from the community! If you have ideas for new features, bug fixes, or improvements, feel free to open an issue or submit a pull request.
 
-#License
+# License
 DailyByte is released under the MIT License.
