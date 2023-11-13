@@ -10,7 +10,7 @@ Connect with Community: Post your answer to the daily challenge to view others s
 
 User-Friendly Interface: The sleek and user-friendly design ensures a seamless experience. Enjoy a clean and intuitive interface that makes navigation a breeze.
 
-#Installation
+# Installation
 To get started with DailyByte, follow these simple steps:
 
 Clone the repository:
